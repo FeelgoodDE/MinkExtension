@@ -427,4 +427,14 @@ class Extension implements ExtensionInterface
 
         return $config;
     }
+
+    /**
+     * Returns the extension name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return 'mink';
+    }
 }

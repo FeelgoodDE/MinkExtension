@@ -2,10 +2,8 @@
 
 namespace Behat\MinkExtension\Context;
 
+use Behat\Behat\Context\TranslatableContextInterface;
 use Behat\Gherkin\Node\TableNode;
-
-use Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Event\ScenarioEvent;
 
 /*
  * This file is part of the Behat\MinkExtension.
@@ -21,8 +19,19 @@ use Behat\Behat\Context\TranslatedContextInterface,
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class MinkContext extends RawMinkContext implements TranslatedContextInterface
+class MinkContext extends RawMinkContext implements TranslatableContextInterface
 {
+
+    /**
+     * Returns list of definition translation resources paths.
+     *
+     * @return array
+     */
+    public static function getTranslationResources()
+    {
+        return glob(__DIR__.'/../../../../i18n/*.xliff');
+    }
+
     /**
      * Opens homepage.
      *
@@ -452,26 +461,6 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
         $filename = rtrim($this->getMinkParameter('show_tmp_dir'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.uniqid().'.html';
         file_put_contents($filename, $this->getSession()->getPage()->getContent());
         system(sprintf($this->getMinkParameter('show_cmd'), escapeshellarg($filename)));
-    }
-
-    /**
-     * Returns list of definition translation resources paths.
-     *
-     * @return array
-     */
-    public function getTranslationResources()
-    {
-        return $this->getMinkTranslationResources();
-    }
-
-    /**
-     * Returns list of definition translation resources paths for this dictionary.
-     *
-     * @return array
-     */
-    public function getMinkTranslationResources()
-    {
-        return glob(__DIR__.'/../../../../i18n/*.xliff');
     }
 
     /**

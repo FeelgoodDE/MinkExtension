@@ -12,7 +12,7 @@
         <service id="behat.mink.listener.failure_show_listener" class="%behat.mink.listener.failure_show_listener.class%">
             <argument type="service" id="behat.mink" />
             <argument>%behat.mink.parameters%</argument>
-            <tag name="behat.event_subscriber" priority="0" />
+            <tag name="event_subscriber" priority="0" />
         </service>
 
     </services>

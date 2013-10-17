@@ -1,4 +1,7 @@
 default:
+  suites:
+    default:
+      context: Behat\MinkExtension\Context\MinkContext
   extensions:
     Behat\MinkExtension\Extension:
       base_url: http://en.wikipedia.org/

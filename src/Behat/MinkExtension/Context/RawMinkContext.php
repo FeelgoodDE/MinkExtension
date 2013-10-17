@@ -22,7 +22,7 @@ use Behat\Mink\Mink,
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class RawMinkContext extends BehatContext implements MinkAwareInterface
+class RawMinkContext implements MinkAwareInterface
 {
     private $mink;
     private $minkParameters;
